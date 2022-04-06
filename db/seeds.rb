@@ -100,46 +100,51 @@ end
     Customer.create!(customer_creation_date: Faker::Date.between(from: '2017-09-23', to: '2022-01-25'), user_id: i, company_name: Faker::Company.name, full_name_of_the_company_contact: Faker::Name.name, company_contact_phone: Faker::PhoneNumber.cell_phone, email_of_the_company_contact: Faker::Internet.safe_email, company_description: Faker::Company.buzzword, full_name_of_service_technical_authority: Faker::Name.name, technical_authority_phone_for_service: Faker::PhoneNumber.phone_number, technical_manager_email_for_service: Faker::Internet.email, address_id: i)
 end
 
-# # Generating 75 buildings, connected with Customer
-# (1..75).each do |i|
-#    name = Faker::Name.name
-#    name2 = Faker::Name.name
-#    email = Faker::Internet.email(name: name)
-#    email2 = Faker::Internet.email(name: name2)
-#    phone = Faker::PhoneNumber.cell_phone
-#    phone2 = Faker::PhoneNumber.cell_phone
-#    customerIDList = (1..25).to_a
-# #    addressIDList = (25..99)to_a
-#    Building.create!(customer_id: customerIDList.sample, full_name_of_the_building_administrator: name, email_of_the_administrator_of_the_building: email,phone_number_of_the_building_administrator: phone, full_name_of_the_technical_contact_for_the_building: name2,technical_contact_email_for_the_building: email2, technical_contact_phone_for_the_building: phone2, address_id: i + 24)
-# end
+# Generating 75 buildings, connected with Customer
+(1..75).each do |i|
+   name = Faker::Name.name
+   name2 = Faker::Name.name
+   email = Faker::Internet.email(name: name)
+   email2 = Faker::Internet.email(name: name2)
+   phone = Faker::PhoneNumber.cell_phone
+   phone2 = Faker::PhoneNumber.cell_phone
+   customerIDList = (1..25).to_a
+#    addressIDList = (25..99)to_a
+   Building.create!(customer_id: customerIDList.sample, full_name_of_the_building_administrator: name, email_of_the_administrator_of_the_building: email,phone_number_of_the_building_administrator: phone, full_name_of_the_technical_contact_for_the_building: name2,technical_contact_email_for_the_building: email2, technical_contact_phone_for_the_building: phone2, address_id: i + 24)
+end
 
-# # Generating 75 BuildingDetails connected with Cuilding
-# (1..75).each do |i|
-#     BuildingDetail.create!(
-#     information_key: Faker::Construction.material,
-#     value: Faker::Boolean.boolean,
-#     building_id: i)
-# end
+# Generating 75 BuildingDetails connected with Cuilding
+(1..75).each do |i|
+    BuildingDetail.create!(
+    information_key: Faker::Construction.material,
+    value: Faker::Boolean.boolean,
+    building_id: i)
+end
 
-# # Generating 75 batteries, connected with Building and Employee
-# (1..75).each do |i|
-#     employeeIDList = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-#     Battery.create!(building_id: i, typing: Faker::Company.type, status: ["online","offline"].sample, date_of_commissioning: Faker::Date.between(from: '2017-09-23', to: '2022-01-25'), date_of_last_inspection: Faker::Date.between(from: '2017-09-23', to: '2022-01-25'), information: Faker::Computer.platform, notes: Faker::Lorem.sentence(word_count: 4), employee_id: employeeIDList.sample)
-# end
+# Generating 75 batteries, connected with Building and Employee
+(1..75).each do |i|
+    employeeIDList = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    Battery.create!(building_id: i, typing: Faker::Company.type, status: ["online","offline"].sample, date_of_commissioning: Faker::Date.between(from: '2017-09-23', to: '2022-01-25'), date_of_last_inspection: Faker::Date.between(from: '2017-09-23', to: '2022-01-25'), information: Faker::Computer.platform, notes: Faker::Lorem.sentence(word_count: 4), employee_id: employeeIDList.sample)
+end
 
-# # Generating 150 Columns, connected with battery (average of 2 Columns per Battery)
-# (1..150).each do |i|
-#     status = ["on", "off"]
-#     batteryIdList = (1..75).to_a
-#     Column.create!(battery_id: batteryIdList.sample, typing: Faker::Company.type, number_of_floors_served: Faker::Number.between(from: 1, to: 100),  status: status.sample, information: Faker::Company.buzzword, notes: Faker::ChuckNorris.fact)
-# end
+# Generating 150 Columns, connected with battery (average of 2 Columns per Battery)
+(1..150).each do |i|
+    status = ["on", "off"]
+    batteryIdList = (1..75).to_a
+    Column.create!(battery_id: batteryIdList.sample, typing: Faker::Company.type, number_of_floors_served: Faker::Number.between(from: 1, to: 100),  status: status.sample, information: Faker::Company.buzzword, notes: Faker::ChuckNorris.fact)
+end
 
-# # Generating 450 Elevators, connected with Columns (average of 3 Elevators per Column)
-# (1..450).each do |i|
-#     typing = ["Residential", "Commercial", "Corporate"]
-#     model = ["Standard", "Premium", "Excelium"]
-#     status = ["valid", "invalid"]
-#     columnIdList = (1..150).to_a
-#     fakeDate = Faker::Date.between(from: '2017-09-23', to: '2022-01-25')
-#     Elevator.create!(column_id: columnIdList.sample, serial_number: Faker::IDNumber.valid_south_african_id_number, model: model.sample, typing: typing.sample, status: status.sample, date_of_commissioning: fakeDate + rand(15..30).day, date_of_last_inspection: fakeDate + rand(8..12).months, information: Faker::Company.buzzword, notes: Faker::ChuckNorris.fact, created_at: fakeDate)
-# end
+# Generating 450 Elevators, connected with Columns (average of 3 Elevators per Column)
+(1..450).each do |i|
+    typing = ["Residential", "Commercial", "Corporate"]
+    model = ["Standard", "Premium", "Excelium"]
+    status = ["valid", "invalid"]
+    columnIdList = (1..150).to_a
+    fakeDate = Faker::Date.between(from: '2017-09-23', to: '2022-01-25')
+    Elevator.create!(column_id: columnIdList.sample, serial_number: Faker::IDNumber.valid_south_african_id_number, model: model.sample, typing: typing.sample, status: status.sample, date_of_commissioning: fakeDate + rand(15..30).day, date_of_last_inspection: fakeDate + rand(8..12).months, information: Faker::Company.buzzword, notes: Faker::ChuckNorris.fact, created_at: fakeDate)
+end
+
+
+(1..3).each do |i|
+    Intervention.create!(author_id: "1", battery_id: "10", column_id: "4", elevator_id: "29", employee_id: "23", report: "Hello this is broken")
+end

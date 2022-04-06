@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  # resources :interventions
   resources :leads  
   devise_for :users
+
+  get 'get_batteries_by_building/:building_id', to: 'batteries#get_batteries_by_building'  
+  get '/battery_search' => 'batteries#battery_search'
 
   # get "leads", to: "leads#new"
   # post "leads", to: "leads#create"
