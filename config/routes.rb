@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   resources :leads  
   devise_for :users
 
-  get 'get_courses_by_location/:location_id', to: 'courses#get_courses_by_location'  
-  get '/course_search' => 'courses#course_search'
   # get "leads", to: "leads#new"
   # post "leads", to: "leads#create"
   # get "leads/index", to: "leads#index"
@@ -23,3 +21,15 @@ Rails.application.routes.draw do
   resources :synthesized_messages
   
 end
+
+Rails.application.routes.draw do
+
+  get 'get_building_by_customer/:customer_id', to: 'interventions#get_building_by_customer'  
+
+  get 'get_battery_by_building/:building_id', to: 'interventions#get_battery_by_building'
+  
+  get 'get_column_by_battery/:battery_id', to: 'interventions#get_column_by_battery'
+
+  get 'get_elevator_by_column/:column_id', to: 'interventions#get_elevator_by_column'
+
+ end

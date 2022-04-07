@@ -1,10 +1,3 @@
-Rails.application.routes.draw do
-
-  get 'get_courses_by_location/:location_id', to: 'courses#get_courses_by_location'  
-  get '/course_search' => 'courses#course_search'
-
- end
-
 # Rocket Elevators: Ruby on Rails <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->

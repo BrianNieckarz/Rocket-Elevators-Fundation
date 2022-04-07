@@ -1,5 +1,7 @@
 {
   "name": "Rocket_Elevators_Information_System",
   "private": true,
-  "dependencies": {}
+  "devDependencies": {
+    "prettier": "2.6.2"
+  }
 }
