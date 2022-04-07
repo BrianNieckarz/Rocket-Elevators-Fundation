@@ -40,7 +40,7 @@ $(function () {
                     $(row).appendTo("#building_select");
                     // Fill course select
                     $.each(data, function (i, j) {
-                        row = "<option value=\"" + j.id + "\">" + j.full_name_of_the_building_administrator + "</option>";
+                        row = "<option value=\"" + j.id + "\">" + j.id + "</option>";
                         $(row).appendTo("#building_select");
                         console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ ');
                     });
@@ -95,7 +95,7 @@ $(function () {
                     $(row).appendTo("#battery_select");
                     // Fill course select
                     $.each(data, function (i, j) {
-                        row = "<option value=\"" + j.id + "\">" + j.building_id + "</option>";
+                        row = "<option value=\"" + j.id + "\">" + j.id + "</option>";
                         $(row).appendTo("#battery_select");
                         console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
                     });
@@ -135,7 +135,7 @@ $(function () {
             $.ajax({
                 dataType: "json",
                 cache: false,
-                url: '/get_battery_by_building/' + id_value_string,
+                url: '/get_column_by_battery/' + id_value_string,
                 timeout: 5000,
                 error: function (XMLHttpRequest, errorTextStatus, error) {
                     alert("Failed to submit : " + errorTextStatus + " ;" + error);
@@ -150,7 +150,7 @@ $(function () {
                     $(row).appendTo("#column_select");
                     // Fill course select
                     $.each(data, function (i, j) {
-                        row = "<option value=\"" + j.id + "\">" + j.battery_id + "</option>";
+                        row = "<option value=\"" + j.id + "\">" + j.id + "</option>";
                         $(row).appendTo("#column_select");
                         console.log('___________________________________');
                     });
@@ -190,7 +190,7 @@ $(function () {
             $.ajax({
                 dataType: "json",
                 cache: false,
-                url: '/get_battery_by_building/' + id_value_string,
+                url: '/get_elevator_by_column/' + id_value_string,
                 timeout: 5000,
                 error: function (XMLHttpRequest, errorTextStatus, error) {
                     alert("Failed to submit : " + errorTextStatus + " ;" + error);
@@ -205,7 +205,7 @@ $(function () {
                     $(row).appendTo("#elevator_select");
                     // Fill course select
                     $.each(data, function (i, j) {
-                        row = "<option value=\"" + j.id + "\">" + j.building_id + "</option>";
+                        row = "<option value=\"" + j.id + "\">" + j.id + "</option>";
                         $(row).appendTo("#elevator_select");
                         console.log('()()()()()()()()()()()()()()()()()()()()()()');
                     });

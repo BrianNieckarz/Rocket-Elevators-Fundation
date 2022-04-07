@@ -21,7 +21,7 @@
     </div>
 
 
-    <div class="card-block" style="margin: 20px" id = "customer_select">
+    <div class="card-block" style="margin: 20px">
       <%= form.select(:customer_id) do %>
         <option selected>customer</option>
         <% @customer.each do |c| -%>
@@ -34,7 +34,7 @@
 
   <div class="card card-default">
     <div class="card-heading card-heading-transparent">
-      <label for="building-type" class="card-title" id = "building_select">
+      <label for="building-type" class="card-title">
         <h3>
           <span style="color:rgb(10, 101, 160); font-weight:bolder">STEP 2 |</span> Select Building ID
         </h3>
@@ -134,7 +134,7 @@
 
 
       <%# Customer %>
-      <select class="custom-select mb-0 mr-sm-0 mb-sm-0">
+      <select class="custom-select mb-0 mr-sm-0 mb-sm-0" id = "customer_select">
         <option selected>customer</option>
         <%= @customer.each do |c| %>
                 <option value="<%= c.id %>"><%= c.company_name %></option>
@@ -143,7 +143,7 @@
 
 
       <%# Building %>
-      <select class="custom-select mb-0 mr-sm-0 mb-sm-0">
+      <select class="custom-select mb-0 mr-sm-0 mb-sm-0" id = "building_select">
         <option selected>building</option>
         <%= @building.each do |b| %>
                 <option value="<%= b.id %>"><%= b.customer_id %></option>
