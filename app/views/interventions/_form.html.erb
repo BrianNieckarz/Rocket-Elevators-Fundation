@@ -89,7 +89,7 @@
     <div class="card-block" style="margin: 20px">
       <%= form.select(:elevator_id) do %>
         <% @elevator.each do |e| -%>
-          <%= content_tag(:option, e.id , value: e.id) %>
+          <%= content_tag(:option, e.id , value: e.elevator_id) %>
         <% end %>
       <% end %>
     </div>

@@ -1,6 +1,7 @@
 class Customer < ApplicationRecord
   belongs_to :user, dependent: :destroy
   belongs_to :address, dependent: :destroy
+  has_many :buildings
 
   after_create :archive_file_to_dropbox
 
