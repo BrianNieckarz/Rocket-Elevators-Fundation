@@ -2,7 +2,7 @@ class CreateInterventions < ActiveRecord::Migration[5.2]
   def change
     create_table :interventions do |t|
 
-      t.string :author_id, null: false
+      t.string :author, null: false
       t.string :customer_id
       t.string :building_id
       t.string :battery_id
