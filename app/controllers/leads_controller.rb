@@ -49,44 +49,44 @@ class LeadsController < ApplicationController
         format.html { redirect_to "/", notice: "Thank you. We will communicate with you shortly!" }
         format.json { render :show, status: :created, location: @lead }
 
-        # attachment_exists = @lead.attached_file_stored_as_binary.attached?
-        # user_is_customer = Customer.where(email_of_the_company_contact: "#{@lead.email}").present? || Customer.where(technical_manager_email_for_service: "#{@lead.email}").present?
-        # site = RestClient::Resource.new(my_uri, my_key, 'X')
-        # client = RestClient::Resource.new
+        attachment_exists = @lead.attached_file_stored_as_binary.attached?
+        user_is_customer = Customer.where(email_of_the_company_contact: "#{@lead.email}").present? || Customer.where(technical_manager_email_for_service: "#{@lead.email}").present?
+        site = RestClient::Resource.new(my_uri, my_key, 'X')
+        client = RestClient::Resource.new
 
-        # if attachment_exists
+        if attachment_exists
           
-        #   attachment = @lead.attached_file_stored_as_binary.attachment
-        #   blob_data = @lead.attached_file_stored_as_binary.blob
-        #   blob_path = blob_data.service.path_for(blob_data.key)
+          attachment = @lead.attached_file_stored_as_binary.attachment
+          blob_data = @lead.attached_file_stored_as_binary.blob
+          blob_path = blob_data.service.path_for(blob_data.key)
           
-        #   # NOTE: FRESHDESK
-        #   data_hash = {
-        #       status: 2,
-        #       priority: 1,
-        #       subject: "#{@lead.full_name} from #{@lead.company_name}", 
-        #       description: "The contact #{@lead.full_name}  from company #{@lead.company_name} can be reached at email #{@lead.email} and at phone number #{@lead.phone}. #{@lead.department_in_charge_of_elevators} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators.\nProject Description: #{@lead.project_description}\n#{@lead.message}.\nThe Contact uploaded an attachment",
-        #       email: "#{@lead.email}",
-        #       type:"Question",
-        #       attachments: [File.new(blob_path, "rb")]
-        #     }
+          # NOTE: FRESHDESK
+          data_hash = {
+              status: 2,
+              priority: 1,
+              subject: "#{@lead.full_name} from #{@lead.company_name}", 
+              description: "The contact #{@lead.full_name}  from company #{@lead.company_name} can be reached at email #{@lead.email} and at phone number #{@lead.phone}. #{@lead.department_in_charge_of_elevators} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators.\nProject Description: #{@lead.project_description}\n#{@lead.message}.\nThe Contact uploaded an attachment",
+              email: "#{@lead.email}",
+              type:"Question",
+              attachments: [File.new(blob_path, "rb")]
+            }
 
-        #     # data_json = JSON.generate(data_hash)
-        #     site.post(data_hash)
+            # data_json = JSON.generate(data_hash)
+            site.post(data_hash)
 
-        #     if user_is_customer
-        #       # NOTE: DROPBOX
-        #       # authenticator = DropboxApi::Authenticator.new(ENV["DROPBOX_KEY"], ENV["DROPBOX_SECRET"])
-        #       # authenticator.auth_code.authorize_url(token_access_type: "offline")
-        #       # access_token = authenticator.auth_code.get_token(ENV["DROPBOX_ACCESS_CODE"])
-        #       # client = DropboxApi::Client.new(access_token: access_token)
-        #       client = DropboxApi::Client.new
-        #       folder_exists = client.search("#{@lead.full_name}").matches[0]
-        #       client.create_folder("/#{@lead.full_name}") unless folder_exists
-        #       file_path = "/#{@lead.full_name}/#{blob_data.filename.sanitized}"
-        #       response = client.upload(file_path, blob_data.download)
-        #       attachment.purge if response.id
-        #     end
+            if user_is_customer
+              # NOTE: DROPBOX
+              # authenticator = DropboxApi::Authenticator.new(ENV["DROPBOX_KEY"], ENV["DROPBOX_SECRET"])
+              # authenticator.auth_code.authorize_url(token_access_type: "offline")
+              # access_token = authenticator.auth_code.get_token(ENV["DROPBOX_ACCESS_CODE"])
+              # client = DropboxApi::Client.new(access_token: access_token)
+              client = DropboxApi::Client.new
+              folder_exists = client.search("#{@lead.full_name}").matches[0]
+              client.create_folder("/#{@lead.full_name}") unless folder_exists
+              file_path = "/#{@lead.full_name}/#{blob_data.filename.sanitized}"
+              response = client.upload(file_path, blob_data.download)
+              attachment.purge if response.id
+            end
           
         if
           # attachment does not exist or user is not customer 

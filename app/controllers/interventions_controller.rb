@@ -20,6 +20,7 @@ class InterventionsController < ApplicationController
     @elevator = Elevator.all
     @employee = Employee.all
     @author = current_user.first_name
+    @authoremail = current_user.email
   end
 
   # GET /interventions/1/edit
@@ -29,16 +30,45 @@ class InterventionsController < ApplicationController
   def create
     @intervention = Intervention.new(intervention_params)
 
+    my_uri = "https://#{ENV['FRESHDESK_DOMAIN']}.freshdesk.com/api/v2/tickets"
+    my_key = ENV['FRESHDESK_API_KEY']
+
     respond_to do |format|
       if @intervention.save
-        format.html { redirect_to intervention_url(@intervention), notice: "Intervention was successfully created." }
+        format.html { redirect_to "/", notice: "Thank you. We will communicate with you shortly!" }
         format.json { render :show, status: :created, location: @intervention }
-      else
+        site = RestClient::Resource.new(my_uri, my_key, 'X')
+        
+          data_hash = {
+            status: 2,
+            priority: 1,
+            subject: "Intervention ##{@intervention.id}", 
+            description: "Author #{@intervention.author}  made a intervention for #{@intervention.id} \nbuilding ##{@intervention.building_id} \nBattery ##{@intervention.battery_id}\nColumn ##{@intervention.column_id} \nElevator ##{@intervention.elevator_id} \n
+            Employee ##{@intervention.employee_id} has been appointed to this case.",
+
+            email: "#{@authoremail}",
+            type:"Intervention"
+          }
+
+          data_json = JSON.generate(data_hash)
+          # site.post(data_json)
+          RestClient::Request.execute(
+            method: :post,
+            url: my_uri,
+            user: my_key,
+            password: 'X',
+            payload: data_json,
+            headers: {"Content-Type" => "application/json"},
+          )
+
+      
+
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @intervention.errors, status: :unprocessable_entity }
       end
     end
   end
+
 
   # PATCH/PUT /interventions/1 or /interventions/1.json
   def update
@@ -112,4 +142,4 @@ class InterventionsController < ApplicationController
     def intervention_params
       params.require(:intervention).permit(:author, :building_id, :battery_id, :column_id, :elevator_id, :employee_id, :report)
     end
-  end
+end
