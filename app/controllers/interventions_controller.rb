@@ -20,7 +20,7 @@ class InterventionsController < ApplicationController
     @elevator = Elevator.all
     @employee = Employee.all
     @author = current_user.first_name
-    @authoremail = current_user.email
+    # @authoremail = current_user.email
   end
 
   # GET /interventions/1/edit
@@ -46,17 +46,15 @@ class InterventionsController < ApplicationController
           data_hash = {
             status: 2,
             priority: 1,
-            subject: "#{@intervention.result} from #{@intervention.author}", 
+            subject: "#{@intervention.author} requested an intervention", 
             description: 
-            "The requester #{@intervention.author} started a new intervention
-            for company #{@intervention.customer_id} //
-            On builging ID #{@intervention.building_id} // 
-            On battery ID #{@intervention.battery_id} //
-            On column ID #{@intervention.column_id} //
-            On elevator ID #{@intervention.elevator_id} //
-            Job is done by employee ID #{@intervention.employee_id} //
-            The job description #{@intervention.report}
-              ",
+            "Client ID: #{@intervention.customer_id},\n
+            Building ID: #{@intervention.building_id},\n
+            Battery ID: #{@intervention.battery_id},\n
+            Column ID: #{@intervention.column_id},\n
+            Elevator ID: #{@intervention.elevator_id},\n
+            Assigned Employee ID: #{@intervention.employee_id}.
+            For more information, look in the admin.",
             
             email: "#{current_user.email}",
             type:"Question"
@@ -145,6 +143,6 @@ class InterventionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def intervention_params
-      params.require(:intervention).permit(:author, :building_id, :battery_id, :column_id, :elevator_id, :employee_id, :report)
+      params.require(:intervention).permit(:author, :customer_id, :building_id, :battery_id, :column_id, :elevator_id, :employee_id, :report)
     end
 end

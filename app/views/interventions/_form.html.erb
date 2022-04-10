@@ -88,7 +88,7 @@
           </div>
           <div class="card-block" style="margin: 20px">
             <select style="max-width: 150px;" id="column_select" class="custom-select mb-0 mr-sm-0 mb-sm-0" <%= form.select(:column_id) do %>>
-              <option selected>None</option>
+              <option selected>Column</option>
               <%= @column.each do |c| %>
                 <option value="<%= c.id %>"><%= c.id %></option>
                 <% end %>
@@ -107,7 +107,7 @@
           </div>
           <div class="card-block" style="margin: 20px">
             <select style="max-width: 150px;" id="elevator_select" class="custom-select mb-0 mr-sm-0 mb-sm-0" <%= form.select(:elevator_id) do %>>
-              <option selected>None</option>
+              <option selected>Elevator</option>
               <%= @elevator.each do |e| %>
                 <option value="<%= e.id %>"><%= e.id %></option>
                 <% end %>

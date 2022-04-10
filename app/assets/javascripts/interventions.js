@@ -120,7 +120,7 @@ $(function () {
                     // Clear all options from building select
                     $("#column_select option").remove();
                     //put in a empty default line
-                    var row = "<option value=\"" + "" + "\">" + "Battery" + "</option>";
+                    var row = "<option value=\"" + "" + "\">" + "None" + "</option>";
                     $(row).appendTo("#column_select");
                     // Fill course select
                     $.each(data, function (i, j) {
@@ -165,7 +165,7 @@ $(function () {
                     // Clear all options from building select
                     $("#elevator_select option").remove();
                     //put in a empty default line
-                    var row = "<option value=\"" + "" + "\">" + "Elevator" + "</option>";
+                    var row = "<option value=\"" + "" + "\">" + "None" + "</option>";
                     $(row).appendTo("#elevator_select");
                     // Fill course select
                     $.each(data, function (i, j) {
