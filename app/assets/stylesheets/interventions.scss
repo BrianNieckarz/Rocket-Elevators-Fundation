@@ -1,3 +1,9 @@
 // Place all the styles related to the Interventions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+input[readonly].classname{
+    background-color: transparent;
+    border: 0;
+    font-size: 1em;
+}

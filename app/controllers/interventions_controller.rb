@@ -28,28 +28,40 @@ class InterventionsController < ApplicationController
   end
 
   def create
+    puts "create intervention function works ---------------------------------------------"
     @intervention = Intervention.new(intervention_params)
+    @intervention.author = current_user.first_name + " " + current_user.last_name
+
 
     my_uri = "https://#{ENV['FRESHDESK_DOMAIN']}.freshdesk.com/api/v2/tickets"
     my_key = ENV['FRESHDESK_API_KEY']
 
     respond_to do |format|
       if @intervention.save
-        format.html { redirect_to "/", notice: "Thank you. We will communicate with you shortly!" }
+        format.html { redirect_to "/", notice: "Good. Intervention created successfully!" }
         format.json { render :show, status: :created, location: @intervention }
+
         site = RestClient::Resource.new(my_uri, my_key, 'X')
-        
+
           data_hash = {
             status: 2,
             priority: 1,
-            subject: "Intervention ##{@intervention.id}", 
-            description: "Author #{@intervention.author}  made a intervention for #{@intervention.id} \nbuilding ##{@intervention.building_id} \nBattery ##{@intervention.battery_id}\nColumn ##{@intervention.column_id} \nElevator ##{@intervention.elevator_id} \n
-            Employee ##{@intervention.employee_id} has been appointed to this case.",
-
-            email: "#{@authoremail}",
-            type:"Intervention"
+            subject: "#{@intervention.result} from #{@intervention.author}", 
+            description: 
+            "The requester #{@intervention.author} started a new intervention
+            for company #{@intervention.customer_id} //
+            On builging ID #{@intervention.building_id} // 
+            On battery ID #{@intervention.battery_id} //
+            On column ID #{@intervention.column_id} //
+            On elevator ID #{@intervention.elevator_id} //
+            Job is done by employee ID #{@intervention.employee_id} //
+            The job description #{@intervention.report}
+              ",
+            
+            email: "#{current_user.email}",
+            type:"Question"
           }
-
+          
           data_json = JSON.generate(data_hash)
           # site.post(data_json)
           RestClient::Request.execute(
@@ -70,7 +82,6 @@ class InterventionsController < ApplicationController
   end
 
 
-  # PATCH/PUT /interventions/1 or /interventions/1.json
   def update
     respond_to do |format|
       if @intervention.update(intervention_params)
@@ -83,7 +94,6 @@ class InterventionsController < ApplicationController
     end
   end
 
-  # DELETE /interventions/1 or /interventions/1.json
   def destroy
     @intervention.destroy
 
@@ -124,11 +134,6 @@ class InterventionsController < ApplicationController
     respond_to do |format|
         format.json { render :json => @elevator }
     end
-  end
-
-
-  def get_all_employee
-    @employee = Employee.all
   end
 
 

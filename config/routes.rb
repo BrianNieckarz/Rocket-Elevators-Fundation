@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :cars
+
   resources :interventions
+  get "interventions", to: "interventions#new"
+
   resources :leads  
   devise_for :users
 

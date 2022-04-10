@@ -146,5 +146,5 @@ end
 
 
 (1..3).each do |i|
-    Intervention.create!(author: "1", battery_id: "10", column_id: "4", elevator_id: "29", employee_id: "23", report: "Hello this is broken")
+    Intervention.create!(author: "Perry", battery_id: "10", column_id: "4", elevator_id: "29", employee_id: "23", status: "pending", report: "Hello! I'm awesome")
 end

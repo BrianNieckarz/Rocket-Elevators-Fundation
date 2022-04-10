@@ -88,7 +88,7 @@ class LeadsController < ApplicationController
               attachment.purge if response.id
             end
           
-        if
+          else
           # attachment does not exist or user is not customer 
           data_hash = {
             status: 2,

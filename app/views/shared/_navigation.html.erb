@@ -38,8 +38,8 @@
                         <% if current_user %>
                             <li><%= link_to "SIGN OUT", destroy_user_session_path, method: :delete %></li>
                             <% if Employee.where(user_id: current_user.id).exists? %>
+                            <li><%= link_to "INTERVENTION", new_intervention_path %></li>
                                 <li><%= link_to "ADMIN", rails_admin_path %></li>
-                                <li><%= link_to "INTERVENTION", interventions_path %></li>
                                 <%# <button onclick="pollyGreet()" class="btn btn-danger">
                                     <strong>BRIEFING</strong>
                                 </button>
