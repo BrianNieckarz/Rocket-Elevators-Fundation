@@ -88,11 +88,6 @@ ActiveRecord::Schema.define(version: 2022_04_10_204759) do
     t.index ["customer_id"], name: "index_buildings_on_customer_id"
   end
 
-  create_table "cars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "columns", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.bigint "battery_id"
     t.string "number_of_floors_served"
@@ -149,6 +144,9 @@ ActiveRecord::Schema.define(version: 2022_04_10_204759) do
   end
 
   create_table "interventions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.string "customer_id"
+    t.string "building_id"
+    t.string "battery_id"
     t.string "column_id"
     t.string "elevator_id"
     t.string "employee_id"
@@ -158,9 +156,6 @@ ActiveRecord::Schema.define(version: 2022_04_10_204759) do
     t.text "report"
     t.string "status", default: "Pending"
     t.string "author"
-    t.string "customer_id", null: false
-    t.string "building_id", null: false
-    t.string "battery_id", null: false
   end
 
   create_table "leads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
