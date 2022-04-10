@@ -1,4 +1,5 @@
 // app/assets/javascripts/batteries.js
+// Added little comment because "Week 8 deploy" deployed unfinished repo
 
 $(function () {
 
