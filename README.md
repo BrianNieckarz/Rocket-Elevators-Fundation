@@ -36,6 +36,10 @@ To try it, log in as an admin and click on INTERVENTION.
 FreshDesk is a usefull tool to make sure to follow up on every contact, no matter the source of this incomming message. In our case, we use it to send a ticket request if you fill the Intervention form.
 
 
+## Postman
+Postman collection link : [Postman](https://www.getpostman.com/collections/7d6cca62146240749531)
+
+
 ## Credits
 
 This project was made possible through the support of:
