@@ -4,11 +4,11 @@
 
 - [Project Description](#project-description)
 - [Application Requirements](#application-requirements)
-- [Using API to improve website features](#using-api-to-improve-website-features)
+- [Intervention](#intervention)
 - [Credits](#credits)
 
 ## Project Description
-The main purpose of adding API to a website is to enriched the experience 
+Intervention form and Rest Api connected to the database. They can simultaneously edit the contents of the Intervention Table inside the Database.
 
 ## Application Requirements
 
@@ -16,7 +16,7 @@ The main purpose of adding API to a website is to enriched the experience
 -   [Rails](https://rubyonrails.org/) (v5.2.6)
 -   [.NET Core](https://dotnet.microsoft.com/en-us/download/dotnet) (.NET 6.0)
 
-## Using API to improve website features
+## Intervention
 
 ### 1. Access to Back Office (Restricted)
 Access to back-end office is restricted to users that were assigned as [employees](https://docs.google.com/spreadsheets/d/1-S0updscUGOpBpFE-2plFBJlVkCseOUuUpp7nu5e-fY/edit#gid=1786076246). Email and password are also required to access the back-end office. To login, simply use the employee's email and using the password that follows the logic of: first letter of first name + first letter of last names + 1234. For example:
